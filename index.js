@@ -16,6 +16,7 @@ transporter.use('compile', markdown({
 }));
 
 var queue = [];
+var busy = false;
 
 function compile(template, data) {
     var s = _.template(template);
@@ -26,7 +27,7 @@ function compile(template, data) {
  * Send an email through smtp transport
  * @param object opts
  */
-function sendMail(opts) {
+function sendMail(opts, cb) {
     if (!opts.subject || !opts.text) {
         throw new ReferenceError("No text or subject to be mailed");
     }
@@ -42,6 +43,7 @@ function sendMail(opts) {
     transporter.sendMail(opts, function(err, info) {
         if (err) console.error(err);
         console.log('mail sent', info);
+        if(typeof cb === 'function') cb();
     });
 }
 
@@ -50,9 +52,9 @@ function sendMail(opts) {
  * if there is only one event, send an email with it
  * if there are more than one, join texts and attachments
  */
-function processQueue() {
-    var l = queue.length;
-    if (l === 0) return;
+function processQueue(cb) {
+    if (queue.length === 0 || busy) return;
+    busy = true;
 
     //Concat texts, get the multiple subject;
     var subject = compile(config.subject, queue[0]);
@@ -68,7 +70,7 @@ function processQueue() {
         subject: subject,
         text: text,
         attachments: attachments
-    });
+    }, x => busy = false);
 
     //reset queue
     queue.length = 0;
