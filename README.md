@@ -6,6 +6,18 @@ Templates can be customized, if you want to use another mailing protocol feel fr
 
 If you need better email interactions have a look at [keymetrics.io](Keymetrics)!
 
+## Usage
+
+```bash
+git clone git@github.com:harttle/pm2-notify.git
+cd pm2-notify && npm install
+cp config.example.yml config.yml
+cp template.example.md config.yml
+```
+
+Your configuration should be done in `config.yml`, 
+and `template.md` is the email tempalate.
+
 ## Configuration
 
 ```
