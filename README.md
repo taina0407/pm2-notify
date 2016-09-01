@@ -12,7 +12,7 @@ If you need better email interactions have a look at [keymetrics.io](Keymetrics)
 git clone git@github.com:harttle/pm2-notify.git
 cd pm2-notify && npm install
 cp config.example.yml config.yml
-cp template.example.md config.yml
+cp template.example.md template.md
 ```
 
 Your configuration should be done in `config.yml`, 
