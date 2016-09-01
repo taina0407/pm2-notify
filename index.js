@@ -16,7 +16,6 @@ transporter.use('compile', markdown({
 }));
 
 var queue = [];
-var timeout = null;
 
 function compile(template, data) {
     var s = _.template(template);
@@ -104,9 +103,6 @@ pm2.launchBus(function(err, bus) {
             }
 
             queue.push(e);
-
-            if (timeout) clearTimeout(timeout);
-            timeout = setTimeout(processQueue, config.polling);
         }
     });
 
@@ -114,3 +110,5 @@ pm2.launchBus(function(err, bus) {
         console.error('PM2 is beeing killed');
     });
 });
+
+setInterval(processQueue, config.polling);
