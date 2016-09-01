@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "async": "^1.2.1",
-    "lodash.template": "^3.6.1",
+    "lodash": "^4.15.0",
     "nodemailer": "^1.3.4",
     "nodemailer-markdown": "^1.0.0",
     "nodemailer-smtp-transport": "^1.0.3",
@@ -16,6 +16,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "soyuka",
+  "author": "harttle",
   "license": "GNU-AGPL3.0"
 }
