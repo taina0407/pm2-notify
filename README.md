@@ -39,12 +39,10 @@ smtp:
 events:
     - exit
 template: './template.md'
-# this is the process subject if there is only one event to be mailed
+# this is the email subject
 subject: '<%= process.name %> errored (<%= process.NODE_ENV %>)'
-# if multiple events are going to be mailed, use a global subject:
-multiple_subject: 'Error on <%= hostname %>'
-#wait for 5 seconds after each event before sending an email - avoid spam when a lot of events happened
-polling: 2500 
+#wait for 5 seconds before sending an email - avoid spam
+polling: 5000
 #attach your process logs to the email
 attach_logs: true 
 ```

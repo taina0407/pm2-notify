@@ -92,7 +92,7 @@ pm2.launchBus(function(err, bus) {
                 text: compile(template, e)
             });
 
-            //should we add logs?
+            //should we attach logs?
             if (config.attach_logs) {
                 e.attachments = [];
                 ['pm_out_log_path', 'pm_err_log_path'].forEach(function(log) {
@@ -106,7 +106,7 @@ pm2.launchBus(function(err, bus) {
             queue.push(e);
 
             if (timeout) clearTimeout(timeout);
-            setTimeout(processQueue, config.polling);
+            timeout = setTimeout(processQueue, config.polling);
         }
     });
 
