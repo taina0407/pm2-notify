@@ -54,10 +54,9 @@ function sendMail(opts) {
 function processQueue() {
     var l = queue.length;
     if (l === 0) return;
-    if (l === 1) return sendMail(queue[0]);
 
     //Concat texts, get the multiple subject;
-    var subject = compile(config.multiple_subject, queue[0]);
+    var subject = compile(config.subject, queue[0]);
     var text = queue.map(mail => mail.text).join('\n');
     var attachments = [];
     if (config.attach_logs) {
@@ -90,8 +89,7 @@ pm2.launchBus(function(err, bus) {
 
             e = util._extend(e, {
                 hostname: hostname,
-                text: compile(template, e),
-                subject: compile(config.subject, e)
+                text: compile(template, e)
             });
 
             //should we add logs?
