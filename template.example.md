@@ -1,6 +1,6 @@
 # <%= process.name %> <%= event %>
 
-Procexx: <%= process.name %> 
+Process: <%= process.name %> 
 
 Error Time: <%= date %>
 
